@@ -6,6 +6,7 @@ extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
 
 mod universe;
+mod ant;
 
 cfg_if! {
     // When the `console_error_panic_hook` feature is enabled, we can call the

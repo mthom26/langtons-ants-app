@@ -1,5 +1,7 @@
 use wasm_bindgen::prelude::*;
 
+use ant::{Ant, AntColor, AntFacing};
+
 #[wasm_bindgen]
 #[repr(u8)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -12,7 +14,8 @@ pub enum Cell {
 pub struct Universe {
     width: u32,
     height: u32,
-    cells: Vec<Cell>
+    cells: Vec<Cell>,
+    ants: Vec<Ant>
 }
 
 #[wasm_bindgen]
@@ -25,10 +28,28 @@ impl Universe {
             .map(|_| { Cell::Black })
             .collect();
         
+        let ants = vec![Ant{
+            current_row: 7,
+            current_col: 9,
+            color: AntColor::Yellow,
+            facing: AntFacing::Down
+        }, Ant {
+            current_row: 27,
+            current_col: 54,
+            color: AntColor::Yellow,
+            facing: AntFacing::Down
+        }, Ant {
+            current_row: 33,
+            current_col: 61,
+            color: AntColor::Yellow,
+            facing: AntFacing::Down
+        }];
+
         Universe {
             width,
             height,
-            cells
+            cells,
+            ants
         }
     }
 
@@ -42,5 +63,9 @@ impl Universe {
 
     pub fn get_cells(&self) -> *const Cell {
         self.cells.as_ptr()
+    }
+
+    pub fn get_ants(&self) -> *const Ant {
+        self.ants.as_ptr()
     }
 }

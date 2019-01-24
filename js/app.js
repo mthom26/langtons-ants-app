@@ -1,9 +1,23 @@
-import { Universe, Cell } from '../crate/pkg';
+import { Universe, Cell, Ant, AntColor, AntFacing } from '../crate/pkg';
 import { memory } from '../crate/pkg/rust_webpack_bg';
 
 const universe = Universe.new();
 const width = universe.get_width();
 const height = universe.get_height();
+
+const getAnts = () => {
+  // Currently each ant is 12 bytes long in memory
+  // 4 bytes for u32 current_row
+  // 4 bytes for u32 current_col
+  // 1 bytes for AntColor u8 enum
+  // 1 bytes for AntFacing u8 enum
+  // 2 bytes extra always 0. Don't know what they are...
+  const antsPtr = universe.get_ants();
+  const ants = new Uint8Array(memory.buffer, antsPtr, 36);
+  console.log(ants);
+}
+
+getAnts();
 
 const CELL_SIZE = 5;
 const GRID_COLOR = '#454545';
