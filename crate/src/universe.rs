@@ -29,8 +29,8 @@ impl Universe {
             .collect();
         
         let ants = vec![Ant{
-            current_row: 7,
-            current_col: 9,
+            current_row: 0,
+            current_col: 0,
             color: AntColor::Yellow,
             facing: AntFacing::Down
         }, Ant {
@@ -40,7 +40,7 @@ impl Universe {
             facing: AntFacing::Down
         }, Ant {
             current_row: 33,
-            current_col: 61,
+            current_col: 63,
             color: AntColor::Yellow,
             facing: AntFacing::Down
         }];
@@ -71,5 +71,16 @@ impl Universe {
 
     pub fn get_number_ants(&self) -> u32 {
         self.ants.len() as u32
+    }
+
+    pub fn get_ant_positions(&self) -> Vec<u32> {
+        // Return an array of positions to the javascript
+        // TODO Add the AntColor as a third item
+        let mut ant_pos: Vec<u32> = Vec::new();
+        for ant in self.ants.iter() {
+            ant_pos.push(ant.current_row);
+            ant_pos.push(ant.current_col);
+        }
+        ant_pos
     }
 }

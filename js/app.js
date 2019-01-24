@@ -20,12 +20,11 @@ const getAnts = () => {
   console.log(ants);
 }
 
-getAnts();
-
 const CELL_SIZE = 5;
 const GRID_COLOR = '#454545';
 const GREEN_COLOR = '#54c365';
 const BLACK_COLOR = '#111111';
+const PURPLE_COLOR = '#d174b8';
 
 const canvas = document.getElementById('universeCanvas');
 canvas.height = (CELL_SIZE + 1) * height + 1;
@@ -98,5 +97,24 @@ const drawCells = () => {
   ctx.stroke();
 }
 
+// Draw Ants
+const drawAnts = () => {
+  const antPositions = universe.get_ant_positions();
+
+  ctx.beginPath();
+  ctx.fillStyle = PURPLE_COLOR;
+  for(let i = 0; i < antPositions.length; i+=2) {
+    ctx.fillRect(
+      antPositions[i+1] * (CELL_SIZE + 1) + 1,
+      antPositions[i] * (CELL_SIZE + 1) + 1,
+      CELL_SIZE,
+      CELL_SIZE
+    );
+  }
+
+  ctx.stroke();
+}
+
 drawGrid();
 drawCells();
+drawAnts();
