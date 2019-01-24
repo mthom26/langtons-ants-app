@@ -12,8 +12,11 @@ const getAnts = () => {
   // 1 bytes for AntColor u8 enum
   // 1 bytes for AntFacing u8 enum
   // 2 bytes extra always 0. Don't know what they are...
+  const numAnts = universe.get_number_ants();
+  const antSize = 12; 
+  
   const antsPtr = universe.get_ants();
-  const ants = new Uint8Array(memory.buffer, antsPtr, 36);
+  const ants = new Uint8Array(memory.buffer, antsPtr, numAnts * antSize);
   console.log(ants);
 }
 

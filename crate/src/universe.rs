@@ -68,4 +68,8 @@ impl Universe {
     pub fn get_ants(&self) -> *const Ant {
         self.ants.as_ptr()
     }
+
+    pub fn get_number_ants(&self) -> u32 {
+        self.ants.len() as u32
+    }
 }
