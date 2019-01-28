@@ -29,20 +29,10 @@ impl Universe {
             .collect();
         
         let ants = vec![Ant{
-            current_row: 0,
-            current_col: 0,
-            color: AntColor::Yellow,
-            facing: AntFacing::Down
-        }, Ant {
-            current_row: 27,
-            current_col: 54,
-            color: AntColor::Yellow,
-            facing: AntFacing::Down
-        }, Ant {
-            current_row: 33,
-            current_col: 63,
-            color: AntColor::Yellow,
-            facing: AntFacing::Down
+            current_row: 32,
+            current_col: 32,
+            color: AntColor::Purple,
+            facing: AntFacing::Left
         }];
 
         Universe {
@@ -82,5 +72,38 @@ impl Universe {
             ant_pos.push(ant.current_col);
         }
         ant_pos
+    }
+
+    pub fn tick(&mut self) {
+        let mut next = self.cells.clone();
+        let mut next_ants = self.ants.clone();
+
+        for (index, ant) in self.ants.iter().enumerate() {
+            // Get ant position and flip the cell. This is using the Cell value
+            // from the old universe so if two ants are on the same Cell they
+            // will flip it to the same color. Then turn ant and move.
+            let id = self.get_index(ant.current_row, ant.current_col);
+            match self.cells[id] {
+                Cell::Black => {
+                    next[id] = Cell::Green;
+                    next_ants[index].turn_black();
+                    next_ants[index].move_forward();
+                },
+                Cell::Green => {
+                    next[id] = Cell::Black;
+                    next_ants[index].turn_green();
+                    next_ants[index].move_forward();
+                }
+            }
+        }
+
+        self.cells = next;
+        self.ants = next_ants;
+    }
+}
+
+impl Universe {
+    fn get_index(&self, row: u32, col: u32) -> usize {
+        (row * self.width + col) as usize
     }
 }
