@@ -4,6 +4,9 @@ use wasm_bindgen::prelude::*;
 #[repr(u8)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum AntColor {
+    // Different AntColor will determine whether the ANt turns left or right
+    // Purple turns right on Cell::Black, left on Cell::Green
+    // Yellow turns right on Cell::Green, left on Cell::Black
     Purple, 
     Yellow
 }

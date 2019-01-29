@@ -57,6 +57,7 @@ const drawGrid = () => {
   }
 }
 
+// Convert a (row, column) pair into an index to retrieve required Cell
 const getIndex = (row, column) => {
   return row * width + column;
 };
@@ -106,7 +107,10 @@ const drawCells = () => {
 }
 
 // Draw Ants
+// TODO Check for Ant Color and render appropriate color
 const drawAnts = () => {
+  // get_ant_positions() returns an array with an even number of items, each
+  // pair corresponds to an ant - [ant1_row, ant1_col, ant2_row, ant2_col, ...]
   const antPositions = universe.get_ant_positions();
 
   ctx.beginPath();

@@ -65,6 +65,7 @@ impl Universe {
 
     pub fn get_ant_positions(&self) -> Vec<u32> {
         // Return an array of positions to the javascript
+        // each pair of values corresponds to an ant
         // TODO Add the AntColor as a third item
         let mut ant_pos: Vec<u32> = Vec::new();
         for ant in self.ants.iter() {
@@ -103,6 +104,7 @@ impl Universe {
 }
 
 impl Universe {
+    // Convert a (row, column) pair into an index to retrieve required Cell
     fn get_index(&self, row: u32, col: u32) -> usize {
         (row * self.width + col) as usize
     }
