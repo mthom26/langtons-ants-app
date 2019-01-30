@@ -1,14 +1,10 @@
-import { Universe, Cell, Ant, AntColor, AntFacing } from '../crate/pkg';
+// import { Universe, Cell, Ant, AntColor, AntFacing } from '../crate/pkg';
 import { memory } from '../crate/pkg/rust_webpack_bg';
 
+import Universe from './universe/universe';
 import { CELL_SIZE } from './constants';
-import drawGrid from './render/drawGrid';
-import drawCells from './render/drawCells';
-import drawAnts from './render/drawAnts';
 
-const universe = Universe.new();
-const width = universe.get_width();
-const height = universe.get_height();
+const universe = new Universe();
 
 const getAnts = () => {
   // Currently each ant is 12 bytes long in memory
@@ -26,16 +22,14 @@ const getAnts = () => {
 }
 
 const canvas = document.getElementById('universeCanvas');
-canvas.height = (CELL_SIZE + 1) * height + 1;
-canvas.width = (CELL_SIZE + 1) * width + 1;
+canvas.height = (CELL_SIZE + 1) * universe.getHeight() + 1;
+canvas.width = (CELL_SIZE + 1) * universe.getWidth() + 1;
 const ctx = canvas.getContext('2d');
 
 const oneTickButton = document.getElementById('oneTickButton');
 oneTickButton.addEventListener('click', (event) => {
-  universe.tick()
-  drawGrid(ctx, width, height);
-  drawCells(ctx, universe, memory, width, height);
-  drawAnts(ctx, universe);
+  universe.tick();
+  universe.render(ctx);
 });
 
 const playPauseButton = document.getElementById('playPauseButton');
@@ -47,9 +41,7 @@ let animationId = null;
 
 const renderLoop = () => {
   universe.tick();
-  drawGrid(ctx, width, height);
-  drawCells(ctx, universe, memory, width, height);
-  drawAnts(ctx, universe);
+  universe.render(ctx);
   animationId = requestAnimationFrame(renderLoop);
 };
 
@@ -69,6 +61,4 @@ const isPaused = () => {
 };
 
 playPauseButton.textContent = 'Play';
-drawGrid(ctx, width, height);
-drawCells(ctx, universe, memory, width, height);
-drawAnts(ctx, universe);
+universe.render(ctx);
