@@ -14,6 +14,7 @@ pub enum Cell {
 pub struct Universe {
     width: u32,
     height: u32,
+    current_tick: u32,
     cells: Vec<Cell>,
     ants: Vec<Ant>
 }
@@ -23,6 +24,7 @@ impl Universe {
     pub fn new() -> Universe {
         let width = 64;
         let height = 64;
+        let current_tick = 0;
 
         let cells = (0..(width * height))
             .map(|_| { Cell::Black })
@@ -38,6 +40,7 @@ impl Universe {
         Universe {
             width,
             height,
+            current_tick,
             cells,
             ants
         }
@@ -100,6 +103,11 @@ impl Universe {
 
         self.cells = next;
         self.ants = next_ants;
+        self.current_tick += 1;
+    }
+
+    pub fn get_current_tick(&self) -> u32 {
+        self.current_tick
     }
 }
 

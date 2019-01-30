@@ -32,6 +32,10 @@ class Universe {
   getHeight() {
     return this.universe.get_height();
   }
+
+  getCurrentTick() {
+    return this.universe.get_current_tick();
+  }
 }
 
 export default Universe;
