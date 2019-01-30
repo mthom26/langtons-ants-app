@@ -39,6 +39,36 @@ oneTickButton.addEventListener('click', (event) => {
   drawAnts();
 });
 
+const playPauseButton = document.getElementById('playPauseButton');
+playPauseButton.addEventListener('click', (event) => {
+  isPaused() ? play() : pause();
+});
+
+let animationId = null;
+
+const renderLoop = () => {
+  universe.tick();
+  drawGrid();
+  drawCells();
+  drawAnts();
+  animationId = requestAnimationFrame(renderLoop);
+};
+
+const play = () => {
+  playPauseButton.textContent = 'Pause';
+  renderLoop();
+};
+
+const pause = () => {
+  playPauseButton.textContent = 'Play';
+  cancelAnimationFrame(animationId);
+  animationId = null;
+};
+
+const isPaused = () => {
+  return animationId === null;
+};
+
 // Draw Grid
 const drawGrid = () => {
   ctx.beginPath();
@@ -127,6 +157,7 @@ const drawAnts = () => {
   ctx.stroke();
 }
 
+playPauseButton.textContent = 'Play';
 drawGrid();
 drawCells();
 drawAnts();
