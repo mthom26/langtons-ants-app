@@ -3,8 +3,12 @@ import { memory } from '../crate/pkg/rust_webpack_bg';
 
 import Universe from './universe/universe';
 import { CELL_SIZE } from './constants';
+import FpsCounter from './fps/fpsCounter';
 
 const universe = new Universe();
+const fpsCounter = new FpsCounter();
+
+let showFps = false;
 
 const getAnts = () => {
   // Currently each ant is 12 bytes long in memory
@@ -37,11 +41,17 @@ playPauseButton.addEventListener('click', (event) => {
   isPaused() ? play() : pause();
 });
 
+const fpsToggleButton = document.getElementById('fpsToggleButton');
+fpsToggleButton.addEventListener('click', (event) => {
+  toggleFpsCounter();
+});
+
 let animationId = null;
 
 const renderLoop = () => {
   universe.tick();
   universe.render(ctx);
+  showFps && fpsCounter.render();
   animationId = requestAnimationFrame(renderLoop);
 };
 
@@ -58,6 +68,17 @@ const pause = () => {
 
 const isPaused = () => {
   return animationId === null;
+};
+
+const toggleFpsCounter = () => {
+  console.log('fps toggle');
+  if(showFps) {
+    showFps = false;
+    document.getElementById('fpsCounter').classList.add('hidden');
+  } else {
+    showFps = true;
+    document.getElementById('fpsCounter').classList.remove('hidden');
+  }
 };
 
 playPauseButton.textContent = 'Play';

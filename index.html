@@ -7,6 +7,13 @@
   <body>
     <div class="app">
       <div class="canvasContainer">
+        <div id="fpsCounter" class="fpsCounter hidden">
+          <span>FPS Counter</span>
+          <span id="fpsLatest"></span>
+          <span id="avgLast100"></span>
+          <span id="minLast100"></span>
+          <span id="maxLast100"></span>
+        </div>
         <canvas id="universeCanvas"></canvas>
       </div>
       <div class="controlPanel">
@@ -15,6 +22,7 @@
         <span>Current Tick: <span id="currentTick"></span></span>
         <button class="button" id="playPauseButton"></button>
         <button class="button" id="oneTickButton">Next Tick</button>
+        <button class="button" id="fpsToggleButton">Show FPS</button>
       </div>
     </div>
   </body>

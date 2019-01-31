@@ -52,3 +52,20 @@ body {
 .button:hover {
   background: #f2f2f273;
 }
+
+.fpsCounter {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 1rem;
+  background: #00000073;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
