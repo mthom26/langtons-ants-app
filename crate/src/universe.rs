@@ -91,12 +91,12 @@ impl Universe {
                 Cell::Black => {
                     next[id] = Cell::Green;
                     next_ants[index].turn_black();
-                    next_ants[index].move_forward();
+                    next_ants[index].move_forward(self.height, self.width);
                 },
                 Cell::Green => {
                     next[id] = Cell::Black;
                     next_ants[index].turn_green();
-                    next_ants[index].move_forward();
+                    next_ants[index].move_forward(self.height, self.width);
                 }
             }
         }

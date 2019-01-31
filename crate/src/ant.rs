@@ -86,13 +86,34 @@ impl Ant {
         }
     }
     // Move forward
-    // TODO Handle edge of map cases
-    pub fn move_forward(&mut self) {
+    pub fn move_forward(&mut self, max_row: u32, max_col: u32) {
         match self.facing {
-            AntFacing::Up => self.current_row -= 1,
-            AntFacing::Right => self.current_col += 1,
-            AntFacing::Down => self.current_row += 1,
-            AntFacing::Left => self.current_col -= 1,
+            AntFacing::Up => {
+                if self.current_row == 0 {
+                    self.current_row = max_row - 1;
+                } else {
+                    self.current_row -= 1;
+                } 
+            },
+            AntFacing::Right => {
+                self.current_col += 1;
+                if self.current_col > max_col - 1 {
+                    self.current_col = 0;
+                }
+            },
+            AntFacing::Down => {
+                self.current_row += 1;
+                if self.current_row > max_row - 1 {
+                    self.current_row = 0;
+                }
+            },
+            AntFacing::Left => {
+                if self.current_col == 0 {
+                    self.current_col = max_col - 1;
+                } else {
+                    self.current_col -= 1;
+                }
+            }
         }
     }
 }
