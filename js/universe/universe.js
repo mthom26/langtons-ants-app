@@ -5,6 +5,8 @@ import drawGrid from './drawGrid';
 import drawCells from './drawCells';
 import drawAnts from './drawAnts';
 
+const currentTick = document.getElementById('currentTick');
+
 class Universe {
   constructor() {
     // Set values from rust Universe
@@ -23,6 +25,7 @@ class Universe {
     drawGrid(ctx, this.width, this.height);
     drawCells(ctx, this.universe, memory, this.width, this.height);
     drawAnts(ctx, this.universe);
+    currentTick.textContent = this.getCurrentTick();
   }
 
   getWidth() {
