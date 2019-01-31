@@ -1,4 +1,6 @@
-import { GRID_COLOR, CELL_SIZE } from '../constants';
+import { GRID_COLOR } from '../constants';
+import { CELL_SIZE } from '../config';
+
 // Draw Grid
 const drawGrid = (ctx, width, height) => {
   ctx.beginPath();

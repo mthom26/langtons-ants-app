@@ -1,6 +1,7 @@
 import { Cell } from '../../crate/pkg';
 
-import { GREEN_COLOR, BLACK_COLOR, CELL_SIZE } from '../constants';
+import { GREEN_COLOR, BLACK_COLOR } from '../constants';
+import { CELL_SIZE } from '../config';
 
 const drawCells = (ctx, universe, memory, width, height) => {
   // Convert a (row, column) pair into an index to retrieve required Cell

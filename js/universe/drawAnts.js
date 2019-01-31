@@ -1,4 +1,5 @@
-import { PURPLE_COLOR, CELL_SIZE } from '../constants';
+import { PURPLE_COLOR } from '../constants';
+import { CELL_SIZE } from '../config';
 
 // Draw Ants
 // TODO Check for Ant Color and render appropriate color
