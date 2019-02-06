@@ -4,6 +4,7 @@ import { memory } from '../crate/pkg/rust_webpack_bg';
 import Universe from './universe/universe';
 import { CELL_SIZE, incrementCellSize, decrementCellSize } from './config';
 import FpsCounter from './fps/fpsCounter';
+import { zoomIn, zoomOut } from './display/zoom';
 
 const universe = new Universe();
 const fpsCounter = new FpsCounter();
@@ -48,11 +49,13 @@ fpsToggleButton.addEventListener('click', (event) => {
 
 const zoomInButton = document.getElementById('zoomInButton');
 zoomInButton.addEventListener('click', (event) => {
-  zoomIn();
+  zoomIn(currentZoom, canvas, universe);
+  universe.render(ctx);
 });
 const zoomOutButton = document.getElementById('zoomOutButton');
 zoomOutButton.addEventListener('click', (event) => {
-  zoomOut();
+  zoomOut(currentZoom, canvas, universe);
+  universe.render(ctx);
 });
 const currentZoom = document.getElementById('currentZoom');
 currentZoom.textContent = `x${CELL_SIZE}`;
@@ -90,20 +93,6 @@ const toggleFpsCounter = () => {
     showFps = true;
     document.getElementById('fpsCounter').classList.remove('hidden');
   }
-};
-
-const zoomIn = () => {
-  incrementCellSize();
-  currentZoom.textContent = `x${CELL_SIZE}`;
-  canvas.height = (CELL_SIZE + 1) * universe.getHeight() + 1;
-  canvas.width = (CELL_SIZE + 1) * universe.getWidth() + 1;
-};
-
-const zoomOut = () => {
-  decrementCellSize();
-  currentZoom.textContent = `x${CELL_SIZE}`;
-  canvas.height = (CELL_SIZE + 1) * universe.getHeight() + 1;
-  canvas.width = (CELL_SIZE + 1) * universe.getWidth() + 1;
 };
 
 playPauseButton.textContent = 'Play';
