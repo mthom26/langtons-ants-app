@@ -60,10 +60,19 @@ zoomOutButton.addEventListener('click', (event) => {
 const currentZoom = document.getElementById('currentZoom');
 currentZoom.textContent = `x${CELL_SIZE}`;
 
+const ticksPerRenderSelect = document.getElementById('ticksPerRenderSelect');
+ticksPerRenderSelect.addEventListener('change', (event) => {
+  ticksPerRender = Number(event.target.value);
+});
+
 let animationId = null;
 
+let ticksPerRender = 1;
+
 const renderLoop = () => {
-  universe.tick();
+  for(let i = 0; i < ticksPerRender; i++) {
+    universe.tick();
+  }
   universe.render(ctx);
   showFps && fpsCounter.render();
   animationId = requestAnimationFrame(renderLoop);

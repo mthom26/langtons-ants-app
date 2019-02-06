@@ -74,3 +74,20 @@ body {
   display: flex;
   align-items: center;
 }
+
+.ticksPerRenderSelect {
+  margin: 1rem;
+  cursor: pointer;
+  border: 2px solid #f2f2f2;
+  font-size: 1rem;
+  color: #f2f2f2;
+  border-radius: 5px;
+  background: #f2f2f243;
+  padding: 0.5rem 1.5rem;
+}
+
+/* options can't be styled using css */
+/* should make a custom dropdown */
+.ticksPerRenderSelect option {
+  color: #212121;
+}
