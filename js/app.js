@@ -6,7 +6,7 @@ import { CELL_SIZE, incrementCellSize, decrementCellSize } from './config';
 import FpsCounter from './fps/fpsCounter';
 import { zoomIn, zoomOut } from './display/zoom';
 
-const universe = new Universe();
+const universe = new Universe(128, 128);
 const fpsCounter = new FpsCounter();
 
 let showFps = false;

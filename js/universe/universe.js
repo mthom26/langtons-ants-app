@@ -8,9 +8,9 @@ import drawAnts from './drawAnts';
 const currentTick = document.getElementById('currentTick');
 
 class Universe {
-  constructor() {
+  constructor(width, height) {
     // Set values from rust Universe
-    this.universe = rustUniverse.new();
+    this.universe = rustUniverse.new(width, height);
     this.width = this.universe.get_width();
     this.height = this.universe.get_height();
   }
