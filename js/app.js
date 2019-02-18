@@ -1,4 +1,4 @@
-// import { Universe, Cell, Ant, AntColor, AntFacing } from '../crate/pkg';
+import { AntColor, AntFacing } from '../crate/pkg';
 import { memory } from '../crate/pkg/rust_webpack_bg';
 
 import Universe from './universe/universe';
@@ -30,6 +30,25 @@ const canvas = document.getElementById('universeCanvas');
 canvas.height = (CELL_SIZE + 1) * universe.getHeight() + 1;
 canvas.width = (CELL_SIZE + 1) * universe.getWidth() + 1;
 const ctx = canvas.getContext('2d');
+
+canvas.addEventListener('click', (event) => {
+  pause();
+  const boundingRect = canvas.getBoundingClientRect();
+  
+  const scaleX = canvas.width / boundingRect.width;
+  const scaleY = canvas.height / boundingRect.height;
+
+  const canvasLeft = (event.clientX - boundingRect.left) * scaleX;
+  const canvasTop = (event.clientY - boundingRect.top) * scaleY;
+
+  const row = Math.min(Math.floor(canvasTop / (CELL_SIZE + 1)), universe.height - 1);
+  const col = Math.min(Math.floor(canvasLeft / (CELL_SIZE + 1)), universe.width - 1);
+
+  // Interact with universe here
+  // TODO Add option to change AntColor and AntFacing
+  universe.addAnt(row, col, AntColor.Purple, AntFacing.Left);
+  universe.render(ctx);
+});
 
 const oneTickButton = document.getElementById('oneTickButton');
 oneTickButton.addEventListener('click', (event) => {

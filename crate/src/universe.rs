@@ -107,6 +107,15 @@ impl Universe {
     pub fn get_current_tick(&self) -> u32 {
         self.current_tick
     }
+
+    pub fn add_ant(&mut self, row: u32, col: u32, color: AntColor, facing: AntFacing) {
+        self.ants.push(Ant {
+            current_row: row,
+            current_col: col,
+            color: color,
+            facing
+        })
+    }
 }
 
 impl Universe {

@@ -39,6 +39,11 @@ class Universe {
   getCurrentTick() {
     return this.universe.get_current_tick();
   }
+
+  addAnt(row, col, color, facing) {
+    // TODO check if ant already exists on this square and handle it
+    this.universe.add_ant(row, col, color, facing);
+  }
 }
 
 export default Universe;
