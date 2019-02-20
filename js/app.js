@@ -46,7 +46,7 @@ canvas.addEventListener('click', (event) => {
 
   // Interact with universe here
   // TODO Add option to change AntColor and AntFacing
-  universe.addAnt(row, col, AntColor.Purple, AntFacing.Left);
+  universe.addAnt(row, col, antColor, antFacing);
   universe.render(ctx);
 });
 
@@ -84,9 +84,31 @@ ticksPerRenderSelect.addEventListener('change', (event) => {
   ticksPerRender = Number(event.target.value);
 });
 
+const antColorSelect = document.getElementById('antColorSelect');
+antColorSelect.addEventListener('change', (event) => {
+  switch (event.target.value) {
+    case 'purple': antColor = AntColor.Purple; break;
+    case 'yellow': antColor = AntColor.Yellow; break;
+    default: console.log('Selected ant color is not valid.')
+  }
+});
+
+const antFacingSelect = document.getElementById('antFacingSelect');
+antFacingSelect.addEventListener('change', (event) => {
+  switch (event.target.value) {
+    case 'up': antFacing = AntFacing.Up; break;
+    case 'right': antFacing = AntFacing.Right; break;
+    case 'down': antFacing = AntFacing.Down; break;
+    case 'left': antFacing = AntFacing.Left; break;
+    default: console.log('Selected ant facing is not valid.')
+  }
+});
+
 let animationId = null;
 
 let ticksPerRender = 1;
+let antColor = AntColor.Purple;
+let antFacing = AntFacing.Left;
 
 const renderLoop = () => {
   for(let i = 0; i < ticksPerRender; i++) {
