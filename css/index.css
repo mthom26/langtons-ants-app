@@ -38,6 +38,16 @@ body {
   width: 95vh;
 }
 
+.canvasContainerInner::-webkit-scrollbar {
+  background-color: #212121;
+}
+.canvasContainerInner::-webkit-scrollbar-thumb {
+  background-color: rgb(77, 77, 77);
+}
+.canvasContainerInner::-webkit-scrollbar-corner {
+  background-color: #333333;
+}
+
 .controlPanel {
   border-left: 1px solid gray;
   padding: 2rem;
