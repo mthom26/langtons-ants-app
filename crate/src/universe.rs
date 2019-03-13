@@ -64,16 +64,16 @@ impl Universe {
         self.ants.len() as u32
     }
 
-    pub fn get_ant_positions(&self) -> Vec<u32> {
-        // Return an array of positions to the javascript
-        // each pair of values corresponds to an ant
-        // TODO Add the AntColor as a third item
-        let mut ant_pos: Vec<u32> = Vec::new();
+    pub fn get_ant_data(&self) -> Vec<u32> {
+        // Return an array of positions and color to the javascript
+        // each triplet of values corresponds to an ant
+        let mut ant_data: Vec<u32> = Vec::new();
         for ant in self.ants.iter() {
-            ant_pos.push(ant.current_row);
-            ant_pos.push(ant.current_col);
+            ant_data.push(ant.current_row);
+            ant_data.push(ant.current_col);
+            ant_data.push(ant.color as u32);
         }
-        ant_pos
+        ant_data
     }
 
     pub fn tick(&mut self) {

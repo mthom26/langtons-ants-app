@@ -1,19 +1,23 @@
-import { PURPLE_COLOR } from '../constants';
+import { AntColor } from '../../crate/pkg';
+import { PURPLE_COLOR, YELLOW_COLOR } from '../constants';
 import { CELL_SIZE } from '../config';
 
-// Draw Ants
-// TODO Check for Ant Color and render appropriate color
 const drawAnts = (ctx, universe) => {
-  // get_ant_positions() returns an array with an even number of items, each
-  // pair corresponds to an ant - [ant1_row, ant1_col, ant2_row, ant2_col, ...]
-  const antPositions = universe.get_ant_positions();
-
+  // get_ant_data() returns an array where every three itmes corresponds to 
+  // an ant, [ ant_1_row, ant_1_col, ant_1_color, ant_2_row ...]
+  const antData = universe.get_ant_data();
+  
   ctx.beginPath();
-  ctx.fillStyle = PURPLE_COLOR;
-  for(let i = 0; i < antPositions.length; i+=2) {
+  
+  for(let i = 0; i < antData.length; i+=3) {
+    if(antData[i+2] === AntColor.Purple) {
+      ctx.fillStyle = PURPLE_COLOR;
+    } else {
+      ctx.fillStyle = YELLOW_COLOR;
+    }
     ctx.fillRect(
-      antPositions[i+1] * (CELL_SIZE + 1) + 1,
-      antPositions[i] * (CELL_SIZE + 1) + 1,
+      antData[i+1] * (CELL_SIZE + 1) + 1,
+      antData[i] * (CELL_SIZE + 1) + 1,
       CELL_SIZE,
       CELL_SIZE
     );

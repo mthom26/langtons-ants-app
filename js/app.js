@@ -17,7 +17,7 @@ const getAnts = () => {
   // 4 bytes for u32 current_col
   // 1 bytes for AntColor u8 enum
   // 1 bytes for AntFacing u8 enum
-  // 2 bytes extra always 0. Don't know what they are...
+  // 2 bytes extra always 0. Rust padding variable to consistent sizes
   const numAnts = universe.get_number_ants();
   const antSize = 12; 
   
