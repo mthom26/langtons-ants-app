@@ -61,6 +61,12 @@ playPauseButton.addEventListener('click', (event) => {
   isPaused() ? play() : pause();
 });
 
+const resetButton = document.getElementById('resetButton');
+resetButton.addEventListener('click', (event) => {
+  universe.reset();
+  universe.render(ctx);
+});
+
 const fpsToggleButton = document.getElementById('fpsToggleButton');
 fpsToggleButton.addEventListener('click', (event) => {
   toggleFpsCounter();

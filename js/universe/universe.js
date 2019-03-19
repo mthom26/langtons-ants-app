@@ -20,6 +20,10 @@ class Universe {
     this.universe.tick();
   }
 
+  reset() {
+    this.universe.reset();
+  }
+  
   // Render the current state of the universe to canvas context (ctx)
   render(ctx) {
     drawGrid(ctx, this.width, this.height);

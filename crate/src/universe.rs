@@ -44,6 +44,17 @@ impl Universe {
         }
     }
 
+    pub fn reset(&mut self) {
+        self.current_tick = 0;
+
+        let cells = (0..(self.width * self.height))
+            .map(|_| { Cell::Black })
+            .collect();
+
+        self.cells = cells;
+        self.ants = vec![];
+    }
+
     pub fn get_width(&self) -> u32 {
         self.width
     }
