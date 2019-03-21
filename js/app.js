@@ -66,6 +66,7 @@ playPauseButton.addEventListener('click', (event) => {
 
 const resetButton = document.getElementById('resetButton');
 resetButton.addEventListener('click', (event) => {
+  pause();
   universe.reset();
   universe.render(ctx);
 });
