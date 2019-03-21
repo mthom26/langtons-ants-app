@@ -45,8 +45,11 @@ canvas.addEventListener('click', (event) => {
   const col = Math.min(Math.floor(canvasLeft / (CELL_SIZE + 1)), universe.width - 1);
 
   // Interact with universe here
-  // TODO Add option to change AntColor and AntFacing
-  universe.addAnt(row, col, antColor, antFacing);
+  if(!universe.checkCell(row, col)) {
+    universe.addAnt(row, col, antColor, antFacing);
+  } else {
+    universe.removeAnt(row, col);
+  }
   universe.render(ctx);
 });
 

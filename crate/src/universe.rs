@@ -28,12 +28,7 @@ impl Universe {
             .map(|_| { Cell::Black })
             .collect();
         
-        let ants = vec![Ant{
-            current_row: 32,
-            current_col: 32,
-            color: AntColor::Purple,
-            facing: AntFacing::Left
-        }];
+        let ants = vec![];
 
         Universe {
             width,
@@ -126,6 +121,26 @@ impl Universe {
             color: color,
             facing
         })
+    }
+
+    pub fn remove_ant(&mut self, row: u32, col: u32) {
+        let mut index = 0;
+        for (i, ant) in self.ants.iter().enumerate() {
+            if ant.current_row == row && ant.current_col == col {
+                index = i;
+            }
+        }
+        self.ants.remove(index);
+    }
+
+    pub fn check_cell(&self, row: u32, col: u32) -> bool {
+        // Check if there is an ant at the given cell
+        for ant in &self.ants {
+            if ant.current_row == row && ant.current_col == col {
+                return true;
+            }
+        }
+        false
     }
 }
 

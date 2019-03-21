@@ -45,8 +45,15 @@ class Universe {
   }
 
   addAnt(row, col, color, facing) {
-    // TODO check if ant already exists on this square and handle it
     this.universe.add_ant(row, col, color, facing);
+  }
+
+  removeAnt(row, col) {
+    this.universe.remove_ant(row, col);
+  }
+
+  checkCell(row, col) {
+    return this.universe.check_cell(row, col);
   }
 }
 
